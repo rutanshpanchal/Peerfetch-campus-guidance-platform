@@ -1,191 +1,299 @@
-# PeerFetch - Engineering Student Networking Platform
+# 🚀 PeerFetch
+### Engineering Student Networking & Mentorship Platform
 
-A full-stack networking platform for engineering students to facilitate mentorship between seniors and juniors.
+PeerFetch is a full-stack web application designed to help junior engineering students connect with seniors for academic guidance, project collaboration, career advice, and mentorship.
 
-## Features
-
-✨ **Authentication & Admin Gatekeeping**
-- Login/Sign-up with Student ID (format: 25EL011)
-- Admin dashboard at `/admin` for approval workflow
-- Password-protected accounts
-
-🎓 **Organized Navigation**
-- LinkedIn-style feed with 10 engineering branches
-- Branch-specific views with year tabs (1st, 2nd, 3rd, 4th year)
-- Student cards with profile pictures, bios, skills, and badges
-
-🔍 **Search & Filtering**
-- Global search bar for finding students by name
-- Activity-based filtering (TRS, TSA, BAHA, IEEE, IEI)
-- Real-time filtering within branch views
-
-👤 **Profile System**
-- Editable profiles with bio, skills, and extracurriculars
-- Profile pictures via UI Avatars
-- "Request Mentorship" button for connections
-
-💾 **Database**
-- SQLite with Prisma ORM
-- Pre-populated with 2000+ students (50 per branch per year)
-- Realistic mock data with Indian names
-
-🎨 **Design**
-- Tailwind CSS with custom color palette
-- Dark mode support
-- Smooth animations and micro-interactions
-- Premium, professional design
-
-## Tech Stack
-
-- **Framework**: Next.js 14 with App Router
-- **Language**: TypeScript
-- **Database**: SQLite with Prisma
-- **Styling**: Tailwind CSS
-- **Authentication**: Custom session-based auth
-
-## Getting Started
-
-### Prerequisites
-
-- Node.js 18+ installed
-- npm or yarn package manager
-
-### Installation
-
-1. **Install dependencies**
-   ```bash
-   npm install
-   ```
-
-2. **Initialize database**
-   ```bash
-   npx prisma generate
-   npx prisma db push
-   ```
-
-3. **Seed database with mock data**
-   ```bash
-   npm run db:seed
-   ```
-
-4. **Start development server**
-   ```bash
-   npm run dev
-   ```
-
-5. **Open your browser**
-   Navigate to [http://localhost:3000](http://localhost:3000)
-
-## Default Credentials
-
-### Admin Account
-- **Student ID**: `ADMIN001`
-- **Password**: `admin123`
-
-### Student Accounts
-All students use the password: `password123`
-
-Examples:
-- `25EL001` - 1st year Electronics student
-- `24CP015` - 2nd year Computer student
-- `23EE020` - 3rd year Electrical student
-- `22ME005` - 4th year Mechanical student
-
-## Branch Codes
-
-- **EL** - Electronics
-- **CP** - Computer Science
-- **EC** - Electronics & Communication
-- **EE** - Electrical
-- **ME** - Mechanical
-- **CE** - Civil
-- **PE** - Production
-- **IT** - Information Technology
-
-## Project Structure
-
-```
-peerfetch/
-├── app/
-│   ├── admin/              # Admin dashboard
-│   ├── api/                # API routes
-│   ├── branch/[branch]/    # Branch-specific views
-│   ├── dashboard/          # Main dashboard
-│   ├── profile/            # User profile
-│   ├── search/             # Search results
-│   ├── student/[id]/       # Student profile view
-│   ├── globals.css         # Global styles
-│   ├── layout.tsx          # Root layout
-│   └── page.tsx            # Auth page
-├── lib/
-│   ├── auth.ts             # Authentication utilities
-│   ├── prisma.ts           # Prisma client
-│   └── session.ts          # Session management
-├── prisma/
-│   ├── schema.prisma       # Database schema
-│   └── seed.js             # Database seeding
-└── package.json
-```
-
-## Key Features Explained
-
-### Student ID Format
-
-Student IDs follow the format: `YYBBBRRR`
-- `YY` - Batch year (e.g., 25 for batch 2025)
-- `BBB` - Branch code (e.g., EL, CP, EC)
-- `RRR` - Roll number (001-999)
-
-Example: `25EL011` = Batch 2025, Electronics, Roll #011
-
-### Admin Approval System
-
-1. New users sign up with their student ID
-2. Account is created but marked as "pending approval"
-3. Admin logs in to `/admin` dashboard
-4. Admin clicks "Approve" for pending users
-5. Approved users can now access the platform
-
-### Mentorship System
-
-- Students can browse other students by branch and year
-- View detailed profiles with skills and activities
-- Click "Request Mentorship" to connect
-- Requests are tracked in the database
-
-## Development
-
-### Database Commands
-
-```bash
-# Generate Prisma client
-npx prisma generate
-
-# Push schema changes
-npx prisma db push
-
-# Seed database
-npm run db:seed
-
-# Open Prisma Studio
-npx prisma studio
-```
-
-### Build for Production
-
-```bash
-npm run build
-npm start
-```
-
-## Contributing
-
-This is a demo project created for educational purposes.
-
-## License
-
-MIT License - feel free to use this project as a template!
+The platform was developed during a hackathon with the goal of creating a centralized student networking ecosystem inside a college campus.
 
 ---
 
-Built with ❤️ using Next.js, Prisma, and Tailwind CSS
+# 📌 Problem Statement
+
+In engineering colleges, juniors often struggle to find seniors who can help them with:
+
+- Academic guidance
+- Subject preparation
+- Internship advice
+- Hackathon teams
+- Technical mentorship
+- Career roadmaps
+
+PeerFetch solves this problem by creating a LinkedIn-like platform exclusively for students within a campus.
+
+---
+
+# ✨ Key Features
+
+## 🔐 Authentication System
+
+- Student Login & Signup
+- Unique Student ID validation
+- Password protected accounts
+- Session-based authentication
+
+---
+
+## 👨‍💼 Admin Approval Panel
+
+- Dedicated Admin Dashboard
+- New registrations remain pending
+- Admin verifies and approves accounts
+- Only approved students can access the platform
+
+---
+
+## 🎓 Branch-wise Student Directory
+
+Supports multiple engineering branches:
+
+- Electronics Engineering
+- Electronics & Communication
+- Computer Engineering
+- Information Technology
+- Electrical Engineering
+- Mechanical Engineering
+- Civil Engineering
+- Production Engineering
+
+Each branch is further divided into:
+
+- 1st Year
+- 2nd Year
+- 3rd Year
+- 4th Year
+
+---
+
+## 🔍 Smart Search & Filtering
+
+- Search students by name
+- Filter by branch
+- Filter by academic year
+- Filter by activities and technical clubs
+
+Examples:
+
+- IEEE
+- IEI
+- TRS
+- TSA
+- BAHA
+
+---
+
+## 👤 Student Profiles
+
+Each profile contains:
+
+- Profile Picture
+- Bio
+- Technical Skills
+- Branch
+- Academic Year
+- Club Activities
+- Extra-Curricular Information
+
+Students can also send mentorship requests to seniors.
+
+---
+
+## 🤝 Mentorship System
+
+The platform enables juniors to:
+
+- Discover seniors
+- View technical expertise
+- Connect for mentorship
+- Build academic relationships
+
+---
+
+## 🌙 Modern User Interface
+
+- Responsive Layout
+- Dark Theme Support
+- Tailwind CSS Design
+- Smooth Animations
+- Professional Dashboard Experience
+
+---
+
+# 🛠️ Technology Stack
+
+| Category | Technology |
+|----------|------------|
+| Frontend | Next.js 14 |
+| Language | TypeScript |
+| Styling | Tailwind CSS |
+| Backend | Node.js |
+| Database | SQLite |
+| ORM | Prisma |
+| Authentication | Custom Session Authentication |
+
+---
+
+# 🏗️ System Architecture
+
+![System Architecture](images/block_diagram.jpeg)
+
+---
+
+# 🔄 Project Workflow
+
+![Flowchart](images/flowchart.jpeg)
+
+---
+
+# 📸 Project Screenshots
+
+## Dashboard Home
+
+![Dashboard](images/dashboard_001.jpeg)
+
+---
+
+## Student Directory
+
+![Directory](images/dashboard_002.jpeg)
+
+---
+
+## Mentorship Platform
+
+![Mentorship](images/dashboard_003.jpeg)
+
+---
+
+# 📂 Project Structure
+
+```
+peerfetch/
+│
+├── app/
+├── lib/
+├── prisma/
+├── public/
+├── components/
+├── package.json
+└── README.md
+```
+
+---
+
+# 🧠 Student ID Format
+
+```
+YYBBBRRR
+```
+
+Where:
+
+- YY → Admission Year
+- BBB → Branch Code
+- RRR → Roll Number
+
+Example:
+
+```
+25EL011
+```
+
+Means:
+
+- Batch : 2025
+- Branch : Electronics
+- Roll Number : 011
+
+---
+
+# ⚙️ Installation
+
+## Clone Repository
+
+```bash
+git clone https://github.com/rutanshpanchal/Peerfetch-campus-guidance-platform.git
+```
+
+## Install Dependencies
+
+```bash
+npm install
+```
+
+## Generate Prisma Client
+
+```bash
+npx prisma generate
+```
+
+## Push Database Schema
+
+```bash
+npx prisma db push
+```
+
+## Seed Database
+
+```bash
+npm run db:seed
+```
+
+## Run Development Server
+
+```bash
+npm run dev
+```
+
+Open:
+
+```
+http://localhost:3000
+```
+
+---
+
+# 🔑 Demo Credentials
+
+### Admin
+
+```
+ID: ADMIN001
+Password: admin123
+```
+
+### Student
+
+Example:
+
+```
+ID: 25EL001
+Password: password123
+```
+
+---
+
+# 🚀 Future Improvements
+
+- Real-time Chat System
+- Direct Messaging
+- Video Calling
+- AI-based Senior Recommendation
+- Internship & Job Board
+- Project Collaboration Module
+- Notification System
+
+---
+
+# 👨‍💻 My Contribution
+
+As a team member, I contributed to the design and development of the PeerFetch platform, including frontend implementation, UI design, feature integration, and project deployment during the hackathon.
+
+---
+
+# 🎯 Project Objective
+
+The goal of PeerFetch is to bridge the communication gap between junior and senior engineering students by creating a digital mentorship ecosystem that promotes learning, collaboration, and technical growth.
+
+---
+
+## ⭐ If you like this project, consider giving it a star!
