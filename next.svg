@@ -1,0 +1,42 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  studentId String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  profile   Profile?
+
+  @@index([studentId])
+}
+
+model Profile {
+  id               String   @id @default(uuid())
+  userId           String   @unique
+  user             User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name             String
+  batch            String   // e.g., "25" for 2025
+  branch           String   // e.g., "EL", "CP", "EC"
+  branchName       String   // Full branch name with SFI/GIA if applicable
+  year             Int      // 1, 2, 3, or 4
+  bio              String?
+  skills           String?  // Stored as JSON string array
+  extracurriculars String?  // Stored as JSON string array
+  profilePicture   String?  // URL or base64
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@index([branch, year])
+  @@index([name])
+}
